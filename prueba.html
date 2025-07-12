@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nor | Restaurante Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --black: #0c0c0c;
+            --dark-gray: #1a1a1a;
+            --gold: #d4af37;
+            --light-gold: #f5e7a1;
+            --text-light: #f5f5f5;
+            --text-gray: #d1d1d1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .reserve-btn {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .reserve-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .hero h1 span {
+            color: var(--gold);
+            display: block;
+            font-weight: 400;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--text-gray);
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+        
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary:hover {
+            background: var(--light-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--text-light);
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 5%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .about p {
+            margin-bottom: 1.5rem;
+            color: var(--text-gray);
+        }
+        
+        .about-img {
+            flex: 1;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Menu Section */
+        .menu {
+            padding: 100px 5%;
+            background: var(--dark-gray);
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .menu-card {
+            background: var(--black);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1);
+        }
+        
+        .menu-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-card:hover .menu-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-content {
+            padding: 25px;
+        }
+        
+        .menu-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+        
+        .menu-content p {
+            color: var(--text-gray);
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        
+        /* Gallery */
+        .gallery {
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            height: 300px;
+            overflow: hidden;
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        /* Ubicación */
+        .location {
+            padding: 100px 5%;
+            background: var(--dark-gray);
+            position: relative;
+        }
+        
+        .location-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .map-container {
+            flex: 1;
+            min-width: 300px;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%);
+            pointer-events: none;
+        }
+        
+        .location-info {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .location-info h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--gold);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .location-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .contact-details {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .contact-details li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-details i {
+            color: var(--gold);
+            font-size: 1.4rem;
+            min-width: 40px;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-details .detail-content {
+            flex: 1;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .contact-details p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+        
+        .contact-details a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+        
+        .transport-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 25px;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .transport-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+        
+        .transport-info p {
+            color: var(--text-gray);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .transport-info ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .transport-info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: var(--text-gray);
+        }
+        
+        .transport-info i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+        
+        /* Reservation */
+        .reservation {
+            padding: 100px 5%;
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+        
+        .reservation h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .reservation p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .form-group {
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            border-radius: 3px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            padding: 70px 5% 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+        }
+        
+        .footer-column p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            color: var(--text-gray);
+        }
+        
+        .contact-info i {
+            color: var(--gold);
+            margin-right: 10px;
+            min-width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+        
+        .hours-list {
+            list-style: none;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: var(--text-gray);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .about {
+                flex-direction: column;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+                color: var(--text-light);
+                font-size: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .location-container {
+                flex-direction: column;
+            }
+            
+            .map-container {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        /* Animation Effects */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">nor</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#menu">Carta</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#reservas">Reservas</a></li>
+            </ul>
+        </nav>
+        <button class="reserve-btn">Reservar Mesa</button>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content fade-in">
+            <h1>nor <span>Experiencia Gastronómica</span></h1>
+            <p>Donde los sabores del Mediterráneo se fusionan con la autenticidad de los mejores tacos, creando una experiencia culinaria única e inolvidable.</p>
+            <div class="hero-btns">
+                <button class="btn-primary">Ver Carta</button>
+                <button class="btn-secondary">Reservar Ahora</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="about">
+        <div class="about-content fade-in">
+            <h2>Nuestra Historia</h2>
+            <p>nor nace de la pasión por la gastronomía y el deseo de crear un espacio donde cada detalle cuente una historia. Nuestro chef, con más de 15 años de experiencia en las cocinas más prestigiosas de Europa y América, ha creado un menú que es un viaje sensorial.</p>
+            <p>En nor, fusionamos técnicas contemporáneas con ingredientes locales de primera calidad. Nuestros platos mediterráneos reinterpretan tradiciones centenarias, mientras que nuestros tacos son una celebración de sabores auténticos con un toque gourmet.</p>
+            <p>El ambiente elegante pero acogedor, con detalles en dorado que brillan contra el negro profundo, crea el escenario perfecto para una velada inolvidable.</p>
+        </div>
+        <div class="about-img fade-in">
+            <img src="https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior del restaurante nor">
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="section-title fade-in">
+            <h2>Nuestra Carta</h2>
+            <p>Selección de platos que representan la esencia de nor, donde cada bocado es una experiencia</p>
+        </div>
+        <div class="menu-grid">
+            <!-- Mediterranean Dishes -->
+            <div class="menu-card fade-in">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Plato Mediterráneo">
+                </div>
+                <div class="menu-content">
+                    <h3>Pescado a la Sal</h3>
+                    <p>Lubina salvaje cocinada en costra de sal marina con hierbas provenzales y acompañada de verduras asadas</p>
+                    <div class="price">€24</div>
+                </div>
+            </div>
+            
+            <div class="menu-card fade-in">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Plato Mediterráneo">
+                </div>
+                <div class="menu-content">
+                    <h3>Risotto de Setas</h3>
+                    <p>Arborio cremoso con mix de setas silvestres, trufa negra y queso parmesano</p>
+                    <div class="price">€18</div>
+                </div>
+            </div>
+            
+            <!-- Tacos Section -->
+            <div class="menu-card fade-in">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tacos Gourmet">
+                </div>
+                <div class="menu-content">
+                    <h3>Tacos de Cochinita</h3>
+                    <p>Cochinita pibil de 12 horas, cebolla morada encurtida y salsa de habanero mango</p>
+                    <div class="price">€16</div>
+                </div>
+            </div>
+            
+            <div class="menu-card fade-in">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tacos Gourmet">
+                </div>
+                <div class="menu-content">
+                    <h3>Tacos de Atún Sellado</h3>
+                    <p>Atún rojo sellado, aguacate, pico de gallo y mayonesa de chipotle</p>
+                    <div class="price">€19</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="galeria" class="gallery">
+        <div class="gallery-item fade-in">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Galería nor">
+        </div>
+        <div class="gallery-item fade-in">
+            <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Galería nor">
+        </div>
+        <div class="gallery-item fade-in">
+            <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Galería nor">
+        </div>
+        <div class="gallery-item fade-in">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Galería nor">
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="location">
+        <div class="section-title fade-in">
+            <h2>Ubicación</h2>
+            <p>Encuéntranos en el corazón de Reus, Tarragona</p>
+        </div>
+        <div class="location-container">
+            <div class="map-container fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d459.95818552017903!2d1.1074298219394394!3d41.150970335546845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a157199152da39%3A0xa8e97f8ea4940a07!2sRestaurant%20nor!5e1!3m2!1ses!2ses!4v1752053044251!5m2!1ses!2ses" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="map-overlay"></div>
+            </div>
+            
+            <div class="location-info fade-in">
+                <h3>Visítanos</h3>
+                <ul class="contact-details">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="detail-content">
+                            <h4>Dirección</h4>
+                            <p>Av. de Jaume l, 21, 43205 Reus, Tarragona</p>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <div class="detail-content">
+                            <h4>Teléfono</h4>
+                            <p><a href="tel:+34911234567">+34 91 123 45 67</a></p>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <div class="detail-content">
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@restaurantenor.com">info@restaurantenor.com</a></p>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <div class="detail-content">
+                            <h4>Horario</h4>
+                            <p>Lunes a Sábado: 13:00 - 16:00 / 20:00 - 00:00</p>
+                            <p>Domingo: 13:00 - 17:00</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="transport-info">
+                    <h4>Cómo llegar</h4>
+                    <p>El restaurante se encuentra en el centro histórico de Reus, a pocos minutos a pie de la Plaza del Mercadal.</p>
+                    
+                    <ul>
+                        <li><i class="fas fa-subway"></i> Estación de tren: Reus Centro (500m)</li>
+                        <li><i class="fas fa-bus"></i> Parada de autobús: Jaume I - Mercadal</li>
+                        <li><i class="fas fa-parking"></i> Parking público: Plaça de la Llibertat (200m)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation -->
+    <section id="reservas" class="reservation">
+        <div class="section-title fade-in">
+            <h2>Reserva tu Mesa</h2>
+            <p>Disfruta de una experiencia gastronómica inolvidable en nor</p>
+        </div>
+        <form class="fade-in">
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" placeholder="Nombre Completo" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Correo Electrónico" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="tel" placeholder="Teléfono" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Número de Personas" min="1" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="date" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="" disabled selected>Hora</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <textarea placeholder="Mensaje Especial" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Confirmar Reserva</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>nor</h3>
+                <p>Una experiencia gastronómica donde la tradición mediterránea se encuentra con la autenticidad de los mejores tacos.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Av. de Jaume l, 21, 43205 Reus, Tarragona</li>
+                    <li><i class="fas fa-phone"></i> +34 91 123 45 67</li>
+                    <li><i class="fas fa-envelope"></i> info@restaurantenor.com</li>
+                    <li><i class="fas fa-utensils"></i> @restaurantenor</li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Horario</h3>
+                <ul class="hours-list">
+                    <li><span>Lunes - Jueves</span> <span>13:00 - 16:00 / 20:00 - 00:00</span></li>
+                    <li><span>Viernes - Sábado</span> <span>13:00 - 16:00 / 20:00 - 01:00</span></li>
+                    <li><span>Domingo</span> <span>13:00 - 17:00</span></li>
+                    <li><span>Domingo noche</span> <span>Cerrado</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 nor Restaurante. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('appear');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        
+        fadeElements.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Form submission
+        const reservationForm = document.querySelector('form');
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu reserva! Te hemos enviado un correo de confirmación.');
+            reservationForm.reset();
+        });
+        
+        // Reserve button in header
+        const reserveBtn = document.querySelector('.reserve-btn');
+        reserveBtn.addEventListener('click', () => {
+            document.getElementById('reservas').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
