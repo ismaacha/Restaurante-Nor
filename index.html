@@ -117,7 +117,7 @@
             <!-- More Dishes -->
             <div class="menu-card fade-in">
                 <div class="menu-img">
-                    <img src="imagenes/Postres/Postre1.png" alt="Plato Mediterráneo">
+                    <img src="imagenes/Postres/Postre2.png" alt="Plato Mediterráneo">
                 </div>
                 <div class="menu-content">
                     <h3>Plato con frutas variadas</h3>
@@ -128,7 +128,7 @@
             
             <div class="menu-card fade-in">
                 <div class="menu-img">
-                    <img src="imagenes/Postres/Postre2.png" alt="Tacos Gourmet">
+                    <img src="imagenes/Postres/Postre3.png" alt="Tacos Gourmet">
                 </div>
                 <div class="menu-content">
                     <h3>Variedad de Batidos</h3>
@@ -161,7 +161,7 @@
 
             <div class="menu-card fade-in">
                 <div class="menu-img">
-                    <img src="imagenes/Platos/Plato6.jpeg" alt="Postre Gourmet">
+                    <img src="imagenes/Postres/Postre1.jpeg" alt="Postre Gourmet">
                 </div>
                 <div class="menu-content">
                     <h3>Variedad de Postres</h3>
@@ -186,29 +186,151 @@
     -->
 
 
-    <!-- Gallery -->
-     <!-- Nuestras zonas -->
-      
-     <br>
-     <div class="section-title fade-in">
-            <h2>Nuestras Zonas</h2>
-            <p>Explora las diferentes áreas de nor, cada una diseñada para ofrecer una experiencia única</p>
-    
+    <!-- NOR Galería -->
 
-            <section id="galeria" class="gallery">
-        <div class="gallery-item fade-in">
-            <img src="imagenes/Ubicacion/Sala1.jpeg" alt="Galería nor">
+    <div id="nor-galeria" class="container">
+    <div class="section-title fade-in">
+        <h2>Nuestras Zonas</h2>
+        <p>Explora las diferentes áreas de NOR — cada espacio, un carácter propio.</p>
+    </div>
+
+    <div class="chips" id="filterChips">
+        <div class="chip active" data-zone="all">Todas</div>
+        <div class="chip" data-zone="sala">Sala</div>
+        <div class="chip" data-zone="barra">Barra</div>
+        <div class="chip" data-zone="exterior">Exterior</div>
+        <div class="chip" data-zone="cocina">Cocina</div>
+    </div>
+
+    <section id="galeria" class="gallery" aria-live="polite"></section>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" aria-hidden="true" tabindex="-1">
+    <div class="lightbox-content" role="dialog" aria-modal="true">
+        <img id="lbImage" class="lightbox-img" src="" alt="">
+        <div class="lb-side">
+        <h3 id="lbTitle" class="lb-title"></h3>
+        <p id="lbDesc" class="lb-desc"></p>
         </div>
-        <div class="gallery-item fade-in">
-            <img src="imagenes/Ubicacion/Ubi0.jpg" alt="Galería nor">
-        </div>
-        <div class="gallery-item fade-in">
-            <img src="imagenes/Ubicacion/Sala2.jpeg" alt="Galería nor">
-        </div>
-        <div class="gallery-item fade-in">
-            <img src="imagenes/Ubicacion/Ubi2.png" alt="Galería nor">
-        </div>
-    </section>
+    </div>
+    </div>
+
+    <script>
+    // Ruta base de las imágenes
+    const basePath = 'imagenes/';
+
+    // Lista de imágenes (sin terraza)
+    const images = [
+        // Sala
+        { file: 'Ubicacion/Sala1.jpeg', zone: 'sala', title: 'Sala principal', desc: 'Ambiente cálido y mesas amplias.' },
+        { file: 'Ubicacion/Sala2.jpeg', zone: 'sala', title: 'Salón privado', desc: 'Perfecto para grupos y celebraciones.' },
+        // Barra
+        { file: 'Ubicacion/Barra1.jpeg', zone: 'barra', title: 'Platos rapidos', desc: 'Tapas rápidas.' },
+        { file: 'Ubicacion/Barra2.jpeg', zone: 'barra', title: 'Ensaladas varias', desc: 'Gran elección de ensaladas.' },
+        // Exterior
+        { file: 'Ubicacion/Ubi0.jpg', zone: 'exterior', title: 'Fachada Nor', desc: 'Entrada principal y terraza.' },
+        { file: 'Ubicacion/Ubi2.png', zone: 'exterior', title: 'Plano de ubicación', desc: 'Situación en la calle.' },
+        // Cocina
+        { file: 'Ubicacion/Cocina1.jpg', zone: 'cocina', title: 'Cocina abierta', desc: 'Equipo y elaboración en vivo.' },
+        { file: 'Pescados/Pescado1.png', zone: 'cocina', title: 'Pescado a diario', desc: 'Fresco y hecho al momento.' },
+        { file: 'Carnes1.jpg', zone: 'cocina', title: 'Carnes a la brasa', desc: 'Cortes y presentación.' },
+        { file: 'Postres/Postre1.jpeg', zone: 'cocina', title: 'Postre estrella', desc: 'Final dulce y casero.' }
+    ];
+
+    const gal = document.getElementById('galeria');
+
+    function buildGallery(list){
+        gal.innerHTML = '';
+        list.forEach((imgObj, idx)=>{
+        const div = document.createElement('div');
+        div.className = 'gallery-item fade-in';
+        div.dataset.zone = imgObj.zone;
+        div.dataset.idx = idx;
+
+        const img = document.createElement('img');
+        img.alt = imgObj.title + ' · ' + imgObj.desc;
+        img.dataset.src = basePath + imgObj.file;
+        img.loading = 'lazy';
+
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        overlay.innerHTML = `<div class="caption">${imgObj.title}</div><div class="tag">${imgObj.zone}</div>`;
+
+        div.appendChild(img);
+        div.appendChild(overlay);
+        gal.appendChild(div);
+
+        div.addEventListener('click', ()=> openLightbox(idx));
+        });
+
+        const io = new IntersectionObserver((entries, obs)=>{
+        entries.forEach(e=>{
+            if(e.isIntersecting){
+            const i = e.target.querySelector('img');
+            if(i && i.dataset.src){ i.src = i.dataset.src; delete i.dataset.src; }
+            obs.unobserve(e.target);
+            }
+        });
+        },{rootMargin:'200px'});
+        document.querySelectorAll('.gallery-item').forEach(it=> io.observe(it));
+    }
+
+    document.getElementById('filterChips').addEventListener('click',(ev)=>{
+        const chip = ev.target.closest('.chip');
+        if(!chip) return;
+        document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active');
+        const zone = chip.dataset.zone;
+        [...document.querySelectorAll('.gallery-item')].forEach(it=>{
+        it.style.display = (zone==='all'||it.dataset.zone===zone)?'':'none';
+        });
+    });
+
+    let currentIndex=0;
+    const lb=document.getElementById('lightbox');
+    const lbImage=document.getElementById('lbImage');
+    const lbTitle=document.getElementById('lbTitle');
+    const lbDesc=document.getElementById('lbDesc');
+
+    function openLightbox(idx){
+        currentIndex=idx;
+        showImage(currentIndex);
+        lb.classList.add('active');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+    }
+    function closeLightbox(){
+        lb.classList.remove('active');
+        lb.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+    }
+    function showImage(i){
+        const obj=images[i];
+        lbImage.src=basePath+obj.file;
+        lbImage.alt=obj.title+' · '+obj.desc;
+        lbTitle.textContent=obj.title;
+        lbDesc.textContent=obj.desc;
+    }
+
+    lb.addEventListener('click',(e)=>{if(e.target===lb) closeLightbox();});
+    window.addEventListener('keydown',(e)=>{if(!lb.classList.contains('active'))return;if(e.key==='Escape')closeLightbox();});
+
+    // Swipe en móvil
+    let startX=0;
+    lbImage.addEventListener('touchstart',(e)=>{startX=e.touches[0].clientX;});
+    lbImage.addEventListener('touchend',(e)=>{
+        let diff=e.changedTouches[0].clientX-startX;
+        if(diff>50) { currentIndex=(currentIndex-1+images.length)%images.length; showImage(currentIndex); }
+        if(diff<-50){ currentIndex=(currentIndex+1)%images.length; showImage(currentIndex); }
+    });
+
+    buildGallery(images);
+    </script>
+    <!-- End Gallery -->
+
+
+
 
     <!-- Ubicación -->
     <section id="ubicacion" class="location">
