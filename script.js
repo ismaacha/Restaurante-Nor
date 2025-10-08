@@ -240,6 +240,53 @@ function initHeroAnimation() {
         }, 300);
     }
 }
+// Optimizaciones específicas para dispositivos móviles
+function optimizeHeroForMobile() {
+    const heroBackground = document.querySelector('.hero-background');
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile && heroBackground) {
+        // Desactivar animaciones complejas en móvil
+        heroBackground.style.animation = 'none';
+        
+        // Cargar una versión optimizada de la imagen si es necesario
+        const currentBg = window.getComputedStyle(heroBackground).backgroundImage;
+        if (currentBg.includes('Ubi3.jpeg')) {
+            // Aquí podrías cambiar a una imagen optimizada para móvil
+            // heroBackground.style.backgroundImage = 'url("imagenes/Ubicacion/Ubi3-mobile.jpg")';
+        }
+    }
+}
+
+// Ejecutar al cargar y al redimensionar
+window.addEventListener('load', optimizeHeroForMobile);
+window.addEventListener('resize', optimizeHeroForMobile);
+
+// Intersection Observer para pausar animaciones cuando no son visibles
+function initHeroPerformance() {
+    const hero = document.querySelector('.hero');
+    const heroBackground = document.querySelector('.hero-background');
+    
+    if (!hero || !heroBackground) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Reanudar animación cuando es visible
+                heroBackground.style.animationPlayState = 'running';
+            } else {
+                // Pausar animación cuando no es visible (mejora performance)
+                heroBackground.style.animationPlayState = 'paused';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    observer.observe(hero);
+}
+
+// Inicializar optimizaciones de performance
+document.addEventListener('DOMContentLoaded', initHeroPerformance);
 
 // Inicializar animación del hero al cargar
 window.addEventListener('load', initHeroAnimation);
+
