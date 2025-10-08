@@ -816,3 +816,165 @@
         #nor-galeria .lightbox-content{grid-template-columns:1fr;}
         #nor-galeria .lb-side{display:none;}
         }
+
+        /* ---------------------------
+        Mobile hamburger + mobile-nav
+        --------------------------- */
+
+        /* header height variable (ajusta si cambias padding del header) */
+        :root { --header-h: 68px; }
+
+        /* cuando el panel esté abierto bloqueamos scroll del body */
+        .no-scroll { overflow: hidden !important; }
+
+        /* hamburguesa (visible en mobile - tu media query ya muestra .hamburger) */
+        .hamburger {
+        width: 46px;
+        height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        z-index: 1101; /* por encima del panel */
+        padding: 6px;
+        }
+
+        /* las 3 barras */
+        .hamburger .bar {
+        display: block;
+        width: 28px;
+        height: 2.5px;
+        background: var(--text-light);
+        border-radius: 2px;
+        transition: transform 320ms cubic-bezier(.2,.9,.3,1), opacity 220ms;
+        position: relative;
+        }
+
+        /* separaciones */
+        .hamburger .bar + .bar { margin-top: 6px; }
+
+        /* estado activo -> X */
+        .hamburger.active .bar1 {
+        transform: translateY(8.5px) rotate(45deg);
+        }
+        .hamburger.active .bar2 {
+        opacity: 0;
+        transform: scaleX(0);
+        }
+        .hamburger.active .bar3 {
+        transform: translateY(-8.5px) rotate(-45deg);
+        }
+
+        /* Mobile nav panel (oculto por defecto) */
+        .mobile-nav {
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        z-index: 1100;
+        background: linear-gradient(180deg, rgba(6,6,6,0.98), rgba(12,12,12,0.99));
+        border-top: 1px solid rgba(212,175,55,0.06);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 420ms cubic-bezier(.2,.9,.2,1), opacity 220ms;
+        opacity: 0;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        /* open: expandimos. usa calc para dejar espacio al header */
+        .mobile-nav.open {
+        max-height: calc(100vh - var(--header-h));
+        opacity: 1;
+        }
+
+        /* lista móvil */
+        .mobile-links {
+        list-style: none;
+        padding: 18px 6% 40px;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        }
+
+        /* items */
+        .mobile-links > li {
+        opacity: 0;
+        transform: translateY(6px);
+        transition: transform 320ms ease, opacity 280ms ease;
+        }
+
+        /* cuando el panel abre, animamos entradas con ligero delay (stagger) */
+        .mobile-nav.open .mobile-links > li {
+        opacity: 1;
+        transform: none;
+        }
+
+        /* enlace móvil */
+        .mobile-links a,
+        .mobile-links .submenu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        width: 100%;
+        background: rgba(255,255,255,0.02);
+        color: var(--text-light);
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        letter-spacing: 0.6px;
+        transition: background .18s ease, transform .12s;
+        }
+        .mobile-links a:hover,
+        .mobile-links .submenu-toggle:hover { background: rgba(255,255,255,0.04); transform: translateY(-2px); }
+
+        /* caret */
+        .submenu-toggle .caret {
+        margin-left: 8px;
+        transition: transform 260ms ease;
+        }
+
+        /* submenus (acordeón) */
+        .submenu {
+        list-style: none;
+        padding-left: 10px;
+        margin: 8px 0 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 300ms ease;
+        display: block;
+        }
+        .has-submenu.open .submenu {
+        /* si quieres un max concreto cámbialo; '999px' suficiente para unos cuantos items */
+        max-height: 999px;
+        }
+        .has-submenu.open .submenu-toggle .caret {
+        transform: rotate(180deg);
+        }
+
+        /* estilos para items internos del submenu */
+        .submenu li a {
+        padding: 10px 18px;
+        font-weight: 500;
+        background: transparent;
+        border-radius: 6px;
+        color: var(--text-gray);
+        }
+        .submenu li a:hover { color: var(--text-light); background: rgba(255,255,255,0.02); }
+
+        /* stagger effect: n-th child delays (opcional, fino) */
+        .mobile-links > li:nth-child(1){ transition-delay: 0.02s; }
+        .mobile-links > li:nth-child(2){ transition-delay: 0.05s; }
+        .mobile-links > li:nth-child(3){ transition-delay: 0.09s; }
+        .mobile-links > li:nth-child(4){ transition-delay: 0.12s; }
+        .mobile-links > li:nth-child(5){ transition-delay: 0.15s; }
+        .mobile-links > li:nth-child(6){ transition-delay: 0.18s; }
+
+        /* ocultar nav-desktop si quieres redundante (tu media query ya oculta .nav-links) */
+        @media(min-width: 769px){
+        .mobile-nav, .hamburger { display: none; }
+        }

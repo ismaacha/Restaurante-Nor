@@ -19,22 +19,50 @@
 <body>
     <!-- Header -->
     <header>
-        <a href="#" class="logo">NOR</a>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#menu">Carta</a></li>
-                <li><a href="#galeria">Galería</a></li>
-                <li><a href="#reservas">Reservas</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-        <button class="reserve-btn">Reservar Mesa</button>
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
+    <a href="index.html" class="logo">NOR</a>
+
+    <!-- Nav escritorio -->
+    <nav>
+        <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#menu">Carta</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botón hamburguesa (mejor estructura para animar) -->
+    <button id="hamburger" class="hamburger" aria-label="Abrir menú" aria-controls="mobile-nav" aria-expanded="false">
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar3"></span>
+    </button>
     </header>
+
+    <!-- Nav móvil (slide + acordeón). Está separado del header por claridad -->
+    <nav id="mobile-nav" class="mobile-nav" aria-hidden="true">
+    <ul class="mobile-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li class="has-submenu">
+        <button class="submenu-toggle" aria-expanded="false">Carta <span class="caret">▾</span></button>
+        <ul class="submenu">
+            <!-- Si quieres subitems pónlos aquí; si no, deja vacío o elimina el li.has-submenu -->
+            <li><a href="#menu">Mediterráneo</a></li>
+            <li><a href="#menu">Tacos</a></li>
+        </ul>
+        </li>
+        <li><a href="#galeria">Galería</a></li>
+        
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    </nav>
+
+
+
+
+
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
@@ -43,8 +71,15 @@
             <p>Donde los sabores del Mediterráneo se fusionan con la autenticidad de los mejores tacos, creando una experiencia culinaria única e inolvidable.</p>
             <div class="hero-btns">
                 <a href="#menu" class="btn-primary">Ver Carta</a>
-                <a href="#reservas" class="btn-secondary">Reservar Mesa</a>
+
+            <!--      
+                <a href="#reservas" class="btn-secondary">Reservar Mesa</a>  
+                <a href="https://wa.me/34614252659?text=Hola%2C%20quiero%20hacer%20una%20reserva%20en%20Restaurante%20NOR." class="btn-secondary" target="_blank">Reservar Mesa</a>
+            -->
+
             </div>
+            <br>
+            <p class="hero-note">* Recuerda que es una web en proceso, asi que todo feedback constructivo es bienvenido.😊</p>
         </div></strong>
     </section>
 
@@ -234,7 +269,7 @@
         // Cocina
         { file: 'Ubicacion/Cocina1.jpg', zone: 'cocina', title: 'Cocina abierta', desc: 'Equipo y elaboración en vivo.' },
         { file: 'Pescados/Pescado1.png', zone: 'cocina', title: 'Pescado a diario', desc: 'Fresco y hecho al momento.' },
-        { file: 'Carnes1.jpg', zone: 'cocina', title: 'Carnes a la brasa', desc: 'Cortes y presentación.' },
+        { file: 'Carnes1.jpg', zone: 'cocina', title: 'Carnes a la plancha', desc: 'Presentación.' },
         { file: 'Postres/Postre1.jpeg', zone: 'cocina', title: 'Postre estrella', desc: 'Final dulce y casero.' }
     ];
 
@@ -395,7 +430,8 @@
         </div>
     </section>
 
-    <!-- Reservation -->
+
+    <!-- Reservation 
     <section id="reservas" class="reservation">
         <div class="section-title fade-in">
             <h2>Reserva tu Mesa</h2>
@@ -440,6 +476,10 @@
             <button type="submit" class="btn-primary">Confirmar Reserva</button>
         </form>
     </section>
+
+    -->
+
+
 
     <!-- Footer -->
     <footer id="contacto">

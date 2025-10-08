@@ -32,13 +32,68 @@
             });
         });
         
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        
-        hamburger.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        /* ---------------------------
+        Mobile hamburger / panel
+        --------------------------- */
+        const hamburgerBtn = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        const bodyEl = document.body;
+
+        // Toggle open/close panel + animación X
+        function toggleMobileNav(open) {
+        const isOpen = typeof open === 'boolean' ? open : !mobileNav.classList.contains('open');
+        hamburgerBtn.classList.toggle('active', isOpen);
+        hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        mobileNav.classList.toggle('open', isOpen);
+        mobileNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+        bodyEl.classList.toggle('no-scroll', isOpen);
+
+        // create overlay to close when click outside
+        if (isOpen) {
+            let overlay = document.createElement('div');
+            overlay.id = 'mobile-overlay';
+            overlay.style.position = 'fixed';
+            overlay.style.inset = `${getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '68px'} 0 0 0`;
+            overlay.style.zIndex = 1100;
+            overlay.style.background = 'transparent';
+            document.body.appendChild(overlay);
+            overlay.addEventListener('click', () => toggleMobileNav(false), { once: true });
+        } else {
+            const ov = document.getElementById('mobile-overlay');
+            if (ov) ov.remove();
+        }
+        }
+
+        hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMobileNav();
         });
+
+        // cerrar con ESC
+        window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('open')) toggleMobileNav(false);
+        });
+
+        // cerrar si se hace click fuera del nav (tap en overlay lo maneja; esto es extra safety)
+        document.addEventListener('click', (e) => {
+        if (!mobileNav.classList.contains('open')) return;
+        if (!mobileNav.contains(e.target) && !hamburgerBtn.contains(e.target)) toggleMobileNav(false);
+        });
+
+        /* Submenu accordion toggles (si no tienes submenus, no afecta) */
+        document.querySelectorAll('.submenu-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const parent = btn.closest('.has-submenu');
+            const opened = parent.classList.toggle('open');
+            btn.setAttribute('aria-expanded', opened ? 'true' : 'false');
+        });
+        });
+
+        // Si usas scroll-to anchors: cerrar menú tras click en enlace móvil
+        document.querySelectorAll('#mobile-nav a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', () => toggleMobileNav(false));
+        });
+
         
         // Form submission
         const reservationForm = document.querySelector('form');
