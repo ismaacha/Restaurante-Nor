@@ -3,523 +3,542 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurante NOR | Experiencia Gastronómica Premium</title>
+    <title>NOR | Restaurante Gourmet Mediterráneo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="imagenes/Favicon.png">
-
-
-    <meta name="description" content="Descubre NOR, un restaurante que fusiona la tradición mediterránea con la innovación de los mejores tacos. Disfruta de una experiencia gastronómica única en un ambiente elegante y acogedor.">
-    <meta name="keywords" content="restaurante, gastronomía, mediterráneo, tacos, experiencia culinaria, reservas, comida gourmet, ambiente elegante">
-    <meta name="author" content="Restaurante NOR">  
+    <meta name="description" content="NOR: Fusión gastronómica mediterránea y tacos gourmet en Reus. Experiencia culinaria única con ingredientes de primera calidad.">
 </head>
 <body>
     <!-- Header -->
-    <header>
-    <a href="index.html" class="logo">NOR</a>
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#inicio" class="logo">
+                <span>NOR</span>
+            </a>
+            
+            <!-- Navegación Desktop -->
+            <nav class="nav-desktop">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#nosotros" class="nav-link">Nosotros</a>
+                <a href="#menu" class="nav-link">Carta</a>
+                <a href="#galeria" class="nav-link">Galería</a>
+                <a href="#ubicacion" class="nav-link">Ubicación</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+                <div class="nav-indicator"></div>
+            </nav>
 
-    <!-- Nav escritorio -->
-    <nav>
-        <ul class="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#menu">Carta</a></li>
-        <li><a href="#galeria">Galería</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+            <!-- Botón Reserva -->
+            <a href="#contacto" class="btn-reserva">
+                <i class="fas fa-calendar-check"></i>
+                Reservar
+            </a>
 
-    <!-- Botón hamburguesa (mejor estructura para animar) -->
-    <button id="hamburger" class="hamburger" aria-label="Abrir menú" aria-controls="mobile-nav" aria-expanded="false">
-        <span class="bar bar1"></span>
-        <span class="bar bar2"></span>
-        <span class="bar bar3"></span>
-    </button>
+            <!-- Hamburger Menu -->
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Navegación Mobile -->
+        <nav class="nav-mobile" id="navMobile">
+            <div class="nav-mobile-content">
+                <ul class="nav-mobile-links">
+                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                    <li><a href="#menu" class="nav-link">Carta</a></li>
+                    <li><a href="#galeria" class="nav-link">Galería</a></li>
+                    <li><a href="#ubicacion" class="nav-link">Ubicación</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <a href="#contacto" class="btn-reserva-mobile">
+                    <i class="fas fa-calendar-check"></i>
+                    Hacer Reserva
+                </a>
+            </div>
+        </nav>
     </header>
-
-    <!-- Nav móvil (slide + acordeón). Está separado del header por claridad -->
-    <nav id="mobile-nav" class="mobile-nav" aria-hidden="true">
-    <ul class="mobile-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li class="has-submenu">
-        <button class="submenu-toggle" aria-expanded="false">Carta <span class="caret">▾</span></button>
-        <ul class="submenu">
-            <!-- Si quieres subitems pónlos aquí; si no, deja vacío o elimina el li.has-submenu -->
-            <li><a href="#menu">Mediterráneo</a></li>
-            <li><a href="#menu">Tacos</a></li>
-        </ul>
-        </li>
-        <li><a href="#galeria">Galería</a></li>
-        
-        <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    </nav>
-
-
-
-
-
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
-        <strong><div class="hero-content fade-in">
-            <h1>nor <span>Experiencia Mediterranea</span></h1>
-            <p>Donde los sabores del Mediterráneo se fusionan con la autenticidad de los mejores tacos, creando una experiencia culinaria única e inolvidable.</p>
-            <div class="hero-btns">
-                <a href="#menu" class="btn-primary">Ver Carta</a>
-
-            <!--      
-                <a href="#reservas" class="btn-secondary">Reservar Mesa</a>  
-                <a href="https://wa.me/34614252659?text=Hola%2C%20quiero%20hacer%20una%20reserva%20en%20Restaurante%20NOR." class="btn-secondary" target="_blank">Reservar Mesa</a>
-            -->
-
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Experiencia Gastronómica Única</span>
             </div>
-            <br>
-            <p class="hero-note">* Recuerda que es una web en proceso, asi que todo feedback constructivo es bienvenido.😊</p>
-        </div></strong>
+            <h1 class="hero-title">
+                <span class="title-line">NOR</span>
+                <span class="title-subline">Restaurante & Bar</span>
+            </h1>
+            <p class="hero-description">Donde la tradición mediterránea se fusiona con la autenticidad de los tacos gourmet, creando una experiencia culinaria inolvidable en el corazón de Reus.</p>
+            <div class="hero-actions">
+                <a href="#menu" class="btn btn-primary">
+                    <span>Explorar Carta</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="#ubicacion" class="btn btn-secondary">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Nuestra Ubicación</span>
+                </a>
+            </div>
+            
+            <div class="hero-scroll">
+                <span>Descubre más</span>
+                <div class="scroll-indicator"></div>
+            </div>
+        </div>
     </section>
 
     <!-- About Section -->
     <section id="nosotros" class="about">
-        <div class="about-content fade-in">
-            <h2>Nuestra Historia</h2>
-            <strong><p>Nor nace de la pasión por la gastronomía y el deseo de crear un espacio donde cada detalle cuente una historia. Nuestro chef, con más de 15 años de experiencia en las cocinas más prestigiosas de Europa y América, ha creado un menú que es un viaje sensorial.</p>
-            <p>En nor, fusionamos técnicas contemporáneas con ingredientes locales de primera calidad. Nuestros platos mediterráneos reinterpretan tradiciones centenarias, mientras que nuestros tacos son una celebración de sabores auténticos con un toque gourmet.</p>
-            <p>El ambiente elegante pero acogedor, con detalles en dorado que brillan contra el negro profundo, crea el escenario perfecto para una velada inolvidable.</p>
-        </strong></div>
-        <div class="about-img fade-in">
-            <img src="imagenes/Ubicacion/Ubi1.jpeg" alt="Interior del restaurante nor">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-content">
+                    <div class="section-label">
+                        <span>Sobre Nosotros</span>
+                    </div>
+                    <h2 class="section-title">Nuestra Historia</h2>
+                    <div class="divider"></div>
+                    <p>NOR nace de la pasión por la gastronomía y el deseo de crear un espacio donde cada detalle cuente una historia. Nuestro chef, con más de 15 años de experiencia en las cocinas más prestigiosas de Europa y América, ha creado un menú que es un viaje sensorial.</p>
+                    <p>En NOR, fusionamos técnicas contemporáneas con ingredientes locales de primera calidad. Nuestros platos mediterráneos reinterpretan tradiciones centenarias, mientras que nuestros tacos son una celebración de sabores auténticos con un toque gourmet.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h4>Ingredientes Frescos</h4>
+                            <p>Seleccionamos los mejores productos locales y de temporada</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h4>Técnica Gourmet</h4>
+                            <p>Preparaciones que realzan los sabores naturales</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-wine-glass-alt"></i>
+                            </div>
+                            <h4>Ambiente Único</h4>
+                            <p>Diseño elegante que combina tradición y modernidad</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual">
+                    <div class="about-image">
+                        <img src="imagenes/Ubicacion/Ubi1.jpeg" alt="Interior del restaurante NOR" loading="lazy">
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Años de Experiencia</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Platos en Carta</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Ingredientes Frescos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Menu Section -->
     <section id="menu" class="menu">
-        <div class="section-title fade-in">
-            <h2>Nuestra Carta</h2>
-            <p>Selección de platos que representan la esencia de nor, donde cada bocado es una experiencia</p>
-        </div>
-        <div class="menu-grid">
-            <!-- Mediterranean Dishes -->
-            <div class="menu-card fade-in">
-                <div class="menu-img">
-                    <img src="imagenes/Platos/Plato2.png" alt="Plato Mediterráneo">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <span>Nuestra Carta</span>
                 </div>
-                <div class="menu-content">
-                    <h3>Pescado a la Sal</h3>
-                    <p>Lubina salvaje cocinada en costra de sal marina con hierbas provenzales y acompañada de verduras asadas</p>
-                    <div class="price">€24</div>
+                <h2 class="section-title">Descubre Nuestros Sabores</h2>
+                <p class="section-description">Una selección cuidadosamente elaborada que representa la esencia de NOR, donde cada bocado es una experiencia única</p>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Filtros del Menú -->
+            <div class="menu-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <span>Todos</span>
+                </button>
+                <button class="filter-btn" data-filter="mediterraneo">
+                    <span>Mediterráneo</span>
+                </button>
+                <button class="filter-btn" data-filter="tacos">
+                    <span>Tacos Gourmet</span>
+                </button>
+                <button class="filter-btn" data-filter="pescados">
+                    <span>Pescados</span>
+                </button>
+                <button class="filter-btn" data-filter="postres">
+                    <span>Postres</span>
+                </button>
+            </div>
+
+            <!-- Grid del Menú -->
+            <div class="menu-grid">
+                <!-- Plato 1 -->
+                <div class="menu-card" data-category="pescados">
+                    <div class="menu-card-image">
+                        <img src="imagenes/Platos/Plato2.png" alt="Pescado a la Sal" loading="lazy">
+                        <div class="card-badge">Especialidad</div>
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Pescado a la Sal</h3>
+                            <div class="menu-card-price">€24</div>
+                        </div>
+                        <p class="menu-card-description">Lubina salvaje cocinada en costra de sal marina con hierbas provenzales y acompañada de verduras asadas</p>
+                        <div class="menu-card-tags">
+                            <span class="tag">Marisco</span>
+                            <span class="tag">Saludable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plato 2 -->
+                <div class="menu-card" data-category="mediterraneo">
+                    <div class="menu-card-image">
+                        <img src="imagenes/Platos/Plato3.png" alt="Variedad Mediterránea" loading="lazy">
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Variedad Mediterránea</h3>
+                            <div class="menu-card-price">€22</div>
+                        </div>
+                        <p class="menu-card-description">Selección de tapas mediterráneas: pulpo a la gallega, ensalada de tomate heirloom y queso burrata, y pan con tomate</p>
+                        <div class="menu-card-tags">
+                            <span class="tag">Tapas</span>
+                            <span class="tag">Compartir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plato 3 -->
+                <div class="menu-card" data-category="pescados">
+                    <div class="menu-card-image">
+                        <img src="imagenes/Pescados/Pescado1.png" alt="Pescado Fresco" loading="lazy">
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Pescado del Día</h3>
+                            <div class="menu-card-price">€22/kg</div>
+                        </div>
+                        <p class="menu-card-description">Filete de pescado del día con salsa casera y cilantro, servido en grandes platos con variedad al gusto</p>
+                        <div class="menu-card-tags">
+                            <span class="tag">Fresco</span>
+                            <span class="tag">Del día</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plato 4 -->
+                <div class="menu-card" data-category="tacos">
+                    <div class="menu-card-image">
+                        <img src="imagenes/Platos/Plato4.jpeg" alt="Tacos Gourmet" loading="lazy">
+                        <div class="card-badge new">Nuevo</div>
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Tacos Especiales</h3>
+                            <div class="menu-card-price">€5</div>
+                        </div>
+                        <p class="menu-card-description">Tortillas de maíz rellenas de pollo marinado, carne asada o mixto, acompañados de cebolla morada y salsa verde</p>
+                        <div class="menu-card-tags">
+                            <span class="tag">Gourmet</span>
+                            <span class="tag">Especial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plato 5 -->
+                <div class="menu-card" data-category="postres">
+                    <div class="menu-card-image">
+                        <img src="imagenes/Postres/Postre2.png" alt="Frutas Variadas" loading="lazy">
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Frutas de Temporada</h3>
+                            <div class="menu-card-price">€8</div>
+                        </div>
+                        <p class="menu-card-description">Selección de frutas frescas de temporada, servidas con un toque de miel y menta</p>
+                        <div class="menu-card-tags">
+                            <span class="tag">Saludable</span>
+                            <span class="tag">Vegano</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plato 6 -->
+                <div class="menu-card" data-category="postres">
+                    <div class="menu-card-image">
+                        <img src="imagenes/Postres/Postre3.png" alt="Batidos Naturales" loading="lazy">
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Batidos Naturales</h3>
+                            <div class="menu-card-price">€6</div>
+                        </div>
+                        <p class="menu-card-description">Batidos de frutas naturales: fresa, plátano, mango y frutos rojos, preparados al momento</p>
+                        <div class="menu-card-tags">
+                            <span class="tag">Refrescante</span>
+                            <span class="tag">Natural</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="menu-card fade-in">
-                <div class="menu-img">
-                    <img src="imagenes/Platos/Plato3.png" alt="Plato Mediterráneo">
-                </div>
-                <div class="menu-content">
-                    <h3>Variedad de Comida Mediterranea</h3>
-                    <p>Selección de tapas mediterráneas: pulpo a la gallega, ensalada de tomate heirloom y queso burrata, y pan con tomate</p>
-                    <div class="price">€22</div>
-                </div>
+            <div class="menu-cta">
+                <p>¿No encuentras lo que buscas? Consulta nuestra carta completa</p>
+                <a href="#contacto" class="btn btn-primary">
+                    <span>Carta Completa</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
-            
-            <!-- Tacos Section -->
-            <div class="menu-card fade-in">
-                <div class="menu-img">
-                    <img src="imagenes/Pescados/Pescado1.png" alt="Tacos Gourmet">
-                </div>
-                <div class="menu-content">
-                    <h3>Pescado fresco todos los dias</h3>
-                    <p>Filete de pescado del día con salsa casera y cilantro, servido en grandes platos con variedad al gusto</p>
-                    <div class="price">€22 / 1kg</div>
-                </div>
-            </div>
-            
-            <div class="menu-card fade-in">
-                <div class="menu-img">
-                    <img src="imagenes/Platos/Plato4.jpeg" alt="Tacos Gourmet">
-                </div>
-                <div class="menu-content">
-                    <h3>Tacos de Pollo / Carne / Mixto</h3>
-                    <p>Tortillas de maíz rellenas de pollo marinado, carne asada o una mezcla de ambos, acompañados de cebolla morada y salsa verde</p>
-                    <div class="price">€5</div>
-                </div>
-            </div>
-            
-            <!-- More Dishes -->
-            <div class="menu-card fade-in">
-                <div class="menu-img">
-                    <img src="imagenes/Postres/Postre2.png" alt="Plato Mediterráneo">
-                </div>
-                <div class="menu-content">
-                    <h3>Plato con frutas variadas</h3>
-                    <p>Selección de frutas frescas de temporada, servidas con un toque de miel y menta</p>
-                    <div class="price">€8</div>
-                </div>
-            </div>
-            
-            <div class="menu-card fade-in">
-                <div class="menu-img">
-                    <img src="imagenes/Postres/Postre3.png" alt="Tacos Gourmet">
-                </div>
-                <div class="menu-content">
-                    <h3>Variedad de Batidos</h3>
-                    <p>Batidos de frutas naturales: fresa, plátano, mango y frutos rojos, preparados al momento</p>
-                    <div class="price">€6</div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-img">
-                    <img src="imagenes/Platos/Plato5.png" alt="Postre Gourmet">
-                </div>
-                <div class="menu-content">
-                    <h3>Platos de marisco / Pescado y variados</h3>
-                    <p>Selección de mariscos frescos: gambas, mejillones y almejas, servidos con salsa de ajo y perejil</p>
-                    <div class="price">€18</div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-img">
-                    <img src="imagenes/Platos/Plato6.png" alt="Postre Gourmet">
-                </div>
-                <div class="menu-content">
-                    <h3>Variedad de Ensaladas</h3>
-                    <p>Ensalada mediterránea con tomate heirloom, pepino, cebolla roja, aceitunas kalamata y queso feta</p>
-                    <div class="price">€12</div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-img">
-                    <img src="imagenes/Postres/Postre1.jpeg" alt="Postre Gourmet">
-                </div>
-                <div class="menu-content">
-                    <h3>Variedad de Postres</h3>
-                    <p>Selección de postres caseros: tiramisú, panna cotta con coulis de frutos rojos mousse de chocolate, etc.</p>
-                    <div class="price">€7</div>
-                </div>
-            </div>
-
-
         </div>
     </section>
 
-
-    <!--
-        <br>
-     Descargar carta, ver online y tal
-        <div class="menu-actions fade-in">
-            <a href="carta.pdf" class="btn-primary" download>Descargar Carta (PDF)</a>
-            <a href="https://www.restaurantenor.com/carta" class="btn-secondary" target="_blank">Ver Carta Online</a>
-        </div>
-        <br>
-    -->
-
-
-    <!-- NOR Galería -->
-
-    <div id="nor-galeria" class="container">
-    <div class="section-title fade-in">
-        <h2>Nuestras Zonas</h2>
-        <p>Explora las diferentes áreas de NOR — cada espacio, un carácter propio.</p>
-    </div>
-
-    <div class="chips" id="filterChips">
-        <div class="chip active" data-zone="all">Todas</div>
-        <div class="chip" data-zone="sala">Sala</div>
-        <div class="chip" data-zone="barra">Barra</div>
-        <div class="chip" data-zone="exterior">Exterior</div>
-        <div class="chip" data-zone="cocina">Cocina</div>
-    </div>
-
-    <section id="galeria" class="gallery" aria-live="polite"></section>
-    </div>
-
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" aria-hidden="true" tabindex="-1">
-    <div class="lightbox-content" role="dialog" aria-modal="true">
-        <img id="lbImage" class="lightbox-img" src="" alt="">
-        <div class="lb-side">
-        <h3 id="lbTitle" class="lb-title"></h3>
-        <p id="lbDesc" class="lb-desc"></p>
-        </div>
-    </div>
-    </div>
-
-    <script>
-    // Ruta base de las imágenes
-    const basePath = 'imagenes/';
-
-    // Lista de imágenes (sin terraza)
-    const images = [
-        // Sala
-        { file: 'Ubicacion/Sala1.jpeg', zone: 'sala', title: 'Sala principal', desc: 'Ambiente cálido y mesas amplias.' },
-        { file: 'Ubicacion/Sala2.jpeg', zone: 'sala', title: 'Salón privado', desc: 'Perfecto para grupos y celebraciones.' },
-        // Barra
-        { file: 'Ubicacion/Barra1.jpeg', zone: 'barra', title: 'Platos rapidos', desc: 'Tapas rápidas.' },
-        { file: 'Ubicacion/Barra2.jpeg', zone: 'barra', title: 'Ensaladas varias', desc: 'Gran elección de ensaladas.' },
-        // Exterior
-        { file: 'Ubicacion/Ubi0.jpg', zone: 'exterior', title: 'Fachada Nor', desc: 'Entrada principal y terraza.' },
-        { file: 'Ubicacion/Ubi2.png', zone: 'exterior', title: 'Plano de ubicación', desc: 'Situación en la calle.' },
-        // Cocina
-        { file: 'Ubicacion/Cocina1.jpg', zone: 'cocina', title: 'Cocina abierta', desc: 'Equipo y elaboración en vivo.' },
-        { file: 'Pescados/Pescado1.png', zone: 'cocina', title: 'Pescado a diario', desc: 'Fresco y hecho al momento.' },
-        { file: 'Carnes1.jpg', zone: 'cocina', title: 'Carnes a la plancha', desc: 'Presentación.' },
-        { file: 'Postres/Postre1.jpeg', zone: 'cocina', title: 'Postre estrella', desc: 'Final dulce y casero.' }
-    ];
-
-    const gal = document.getElementById('galeria');
-
-    function buildGallery(list){
-        gal.innerHTML = '';
-        list.forEach((imgObj, idx)=>{
-        const div = document.createElement('div');
-        div.className = 'gallery-item fade-in';
-        div.dataset.zone = imgObj.zone;
-        div.dataset.idx = idx;
-
-        const img = document.createElement('img');
-        img.alt = imgObj.title + ' · ' + imgObj.desc;
-        img.dataset.src = basePath + imgObj.file;
-        img.loading = 'lazy';
-
-        const overlay = document.createElement('div');
-        overlay.className = 'overlay';
-        overlay.innerHTML = `<div class="caption">${imgObj.title}</div><div class="tag">${imgObj.zone}</div>`;
-
-        div.appendChild(img);
-        div.appendChild(overlay);
-        gal.appendChild(div);
-
-        div.addEventListener('click', ()=> openLightbox(idx));
-        });
-
-        const io = new IntersectionObserver((entries, obs)=>{
-        entries.forEach(e=>{
-            if(e.isIntersecting){
-            const i = e.target.querySelector('img');
-            if(i && i.dataset.src){ i.src = i.dataset.src; delete i.dataset.src; }
-            obs.unobserve(e.target);
-            }
-        });
-        },{rootMargin:'200px'});
-        document.querySelectorAll('.gallery-item').forEach(it=> io.observe(it));
-    }
-
-    document.getElementById('filterChips').addEventListener('click',(ev)=>{
-        const chip = ev.target.closest('.chip');
-        if(!chip) return;
-        document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-        chip.classList.add('active');
-        const zone = chip.dataset.zone;
-        [...document.querySelectorAll('.gallery-item')].forEach(it=>{
-        it.style.display = (zone==='all'||it.dataset.zone===zone)?'':'none';
-        });
-    });
-
-    let currentIndex=0;
-    const lb=document.getElementById('lightbox');
-    const lbImage=document.getElementById('lbImage');
-    const lbTitle=document.getElementById('lbTitle');
-    const lbDesc=document.getElementById('lbDesc');
-
-    function openLightbox(idx){
-        currentIndex=idx;
-        showImage(currentIndex);
-        lb.classList.add('active');
-        lb.setAttribute('aria-hidden','false');
-        document.body.style.overflow='hidden';
-    }
-    function closeLightbox(){
-        lb.classList.remove('active');
-        lb.setAttribute('aria-hidden','true');
-        document.body.style.overflow='';
-    }
-    function showImage(i){
-        const obj=images[i];
-        lbImage.src=basePath+obj.file;
-        lbImage.alt=obj.title+' · '+obj.desc;
-        lbTitle.textContent=obj.title;
-        lbDesc.textContent=obj.desc;
-    }
-
-    lb.addEventListener('click',(e)=>{if(e.target===lb) closeLightbox();});
-    window.addEventListener('keydown',(e)=>{if(!lb.classList.contains('active'))return;if(e.key==='Escape')closeLightbox();});
-
-    // Swipe en móvil
-    let startX=0;
-    lbImage.addEventListener('touchstart',(e)=>{startX=e.touches[0].clientX;});
-    lbImage.addEventListener('touchend',(e)=>{
-        let diff=e.changedTouches[0].clientX-startX;
-        if(diff>50) { currentIndex=(currentIndex-1+images.length)%images.length; showImage(currentIndex); }
-        if(diff<-50){ currentIndex=(currentIndex+1)%images.length; showImage(currentIndex); }
-    });
-
-    buildGallery(images);
-    </script>
-    <!-- End Gallery -->
-
-
-
-
-    <!-- Ubicación -->
-    <section id="ubicacion" class="location">
-        <div class="section-title fade-in">
-            <h2>Ubicación</h2>
-            <p>Encuéntranos en el corazón de Reus, Tarragona</p>
-        </div>
-        <div class="location-container">
-            <div class="map-container fade-in">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d459.95818552017903!2d1.1074298219394394!3d41.150970335546845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a157199152da39%3A0xa8e97f8ea4940a07!2sRestaurant%20nor!5e1!3m2!1ses!2ses!4v1752053044251!5m2!1ses!2ses" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <div class="map-overlay"></div>
+    <!-- Gallery Section -->
+    <section id="galeria" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <span>Galería</span>
+                </div>
+                <h2 class="section-title">Nuestro Espacio</h2>
+                <p class="section-description">Descubre los diferentes ambientes que hacen de NOR una experiencia única</p>
+                <div class="divider"></div>
             </div>
-            
-            <div class="location-info fade-in">
-                <h3>Visítanos</h3>
-                <ul class="contact-details">
-                    <li>
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div class="detail-content">
-                            <h4>Dirección</h4>
-                            <p>Av. de Jaume l, 21, 43205 Reus, Tarragona</p>
+
+            <!-- Grid Galería -->
+            <div class="gallery-grid">
+                <div class="gallery-item large">
+                    <img src="imagenes/Ubicacion/Ubi0.jpg" alt="Fachada NOR" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>Fachada Principal</h3>
+                            <p>Entrada elegante con detalles en dorado</p>
                         </div>
-                    </li>
-                    
-                    <li>
-                        <i class="fas fa-phone"></i>
-                        <div class="detail-content">
-                            <h4>Teléfono</h4>
-                            <p><a href="tel:+34911234567">+34 91 123 45 67</a></p>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <i class="fas fa-envelope"></i>
-                        <div class="detail-content">
-                            <h4>Email</h4>
-                            <p><a href="mailto:info@restaurantenor.com">info@restaurantenor.com</a></p>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <i class="fas fa-clock"></i>
-                        <div class="detail-content">
-                            <h4>Horario</h4>
-                            <p>Lunes a Domingo: 13:00 - 23:30</p>
-                            <p>Festivos: 13:00 - 23:30</p>
-                        </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
                 
-                <div class="transport-info">
-                    <h4>Cómo llegar</h4>
-                    <p>El restaurante se encuentra en el centro histórico de Reus, a pocos minutos a pie de la Plaza del Mercadal.</p>
+                <div class="gallery-item">
+                    <img src="imagenes/Ubicacion/Sala1.jpeg" alt="Sala Principal" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>Sala Principal</h3>
+                            <p>Ambiente cálido y acogedor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="imagenes/Ubicacion/Barra1.jpeg" alt="Zona de Barra" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>Zona de Barra</h3>
+                            <p>Platos rápidos y tapas gourmet</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="imagenes/Ubicacion/Ubi3.jpeg" alt="Terraza Exterior" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>Terraza Exterior</h3>
+                            <p>Disfruta de tu comida al aire libre</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="imagenes/Ubicacion/Cocina1.jpg" alt="Cocina Abierta" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <h3>Cocina Abierta</h3>
+                            <p>Elaboración en vivo por nuestros chefs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="ubicacion" class="location">
+        <div class="container">
+            <div class="location-container">
+                <div class="location-info">
+                    <div class="section-label">
+                        <span>Ubicación</span>
+                    </div>
+                    <h2 class="section-title">Visítanos en Reus</h2>
+                    <div class="divider"></div>
                     
-                    <ul>
-                        <li><i class="fas fa-subway"></i> Estación de tren: Reus Centro (500m)</li>
-                        <li><i class="fas fa-bus"></i> Parada de autobús: Jaume I - Mercadal</li>
-                        <li><i class="fas fa-parking"></i> Parking público: Plaça de la Llibertat (200m)</li>
-                    </ul>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Dirección</h4>
+                                <p>Av. de Jaume I, 21, 43205 Reus, Tarragona</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Teléfono</h4>
+                                <p><a href="tel:+34614252659">+34 614 25 26 59</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:restanor21@gmail.com">restanor21@gmail.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Horario</h4>
+                                <p>Lunes a Domingo: 13:00 - 23:30</p>
+                                <p>Festivos: 13:00 - 23:30</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="transport-info">
+                        <h3>Cómo Llegar</h3>
+                        <div class="transport-items">
+                            <div class="transport-item">
+                                <i class="fas fa-subway"></i>
+                                <span>Estación de tren: Reus Centro (500m)</span>
+                            </div>
+                            <div class="transport-item">
+                                <i class="fas fa-bus"></i>
+                                <span>Parada de autobús: Jaume I - Mercadal</span>
+                            </div>
+                            <div class="transport-item">
+                                <i class="fas fa-parking"></i>
+                                <span>Parking público: Plaça de la Llibertat (200m)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-map">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d459.95818552017903!2d1.1074298219394394!3d41.150970335546845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a157199152da39%3A0xa8e97f8ea4940a07!2sRestaurant%20nor!5e1!3m2!1ses!2ses!4v1752053044251!5m2!1ses!2ses" 
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-
-    <!-- Reservation 
-    <section id="reservas" class="reservation">
-        <div class="section-title fade-in">
-            <h2>Reserva tu Mesa</h2>
-            <p>Disfruta de una experiencia gastronómica inolvidable en nor</p>
-        </div>
-        <form class="fade-in">
-            <div class="form-row">
-                <div class="form-group">
-                    <input type="text" placeholder="Nombre Completo" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Correo Electrónico" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <input type="tel" placeholder="Teléfono" required>
-                </div>
-                <div class="form-group">
-                    <input type="number" placeholder="Número de Personas" min="1" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <input type="date" required>
-                </div>
-                <div class="form-group">
-                    <select required>
-                        <option value="" disabled selected>Hora</option>
-                        <option value="13:00">13:00</option>
-                        <option value="14:00">14:00</option>
-                        <option value="15:00">15:00</option>
-                        <option value="20:00">20:00</option>
-                        <option value="21:00">21:00</option>
-                        <option value="22:00">22:00</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <textarea placeholder="Mensaje Especial" rows="4"></textarea>
-            </div>
-            <button type="submit" class="btn-primary">Confirmar Reserva</button>
-        </form>
-    </section>
-
-    -->
-
-
 
     <!-- Footer -->
     <footer id="contacto">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>NOR</h3>
-                <p>Una experiencia gastronómica donde la tradición mediterránea se encuentra con la autenticidad de los mejores tacos.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span>NOR</span>
+                    </div>
+                    <p class="footer-description">Una experiencia gastronómica donde la tradición mediterránea se encuentra con la autenticidad de los mejores tacos.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/34614252659" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Av. de Jaume I, 21, 43205 Reus</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+34 614 25 26 59</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>restanor21@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Horario</h3>
+                    <div class="footer-hours">
+                        <div class="hours-item">
+                            <span>Lunes - Domingo</span>
+                            <span>13:00 - 23:30</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Festivos</span>
+                            <span>13:00 - 23:30</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir novedades y ofertas especiales</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu correo electrónico" required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
             
-            <div class="footer-column">
-                <h3>Contacto</h3>
-                <ul class="contact-info">
-                    <li><i class="fas fa-map-marker-alt"></i>Av. de Jaume l, 21, 43205 · Reus, Tarragona</li>
-                    <li><i class="fas fa-phone"></i> +34 614 25 26 59</li>
-                    <li><i class="fas fa-envelope"></i> restanor21@gmail.com</li>
-                    <li><i class="fas fa-utensils"></i> @restaurantenor</li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Restaurante NOR. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos de Uso</a>
+                </div>
             </div>
-            
-            <div class="footer-column">
-                <h3>Horario</h3>
-                <ul class="hours-list">
-                    <li><span>Lunes - Domingo</span> <span> 13:00 - 23:30 </span></li>
-                    <li><span> Festivos </span> <span> 13:00 - 23:30 </span></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2025 Nor Restaurante. Todos los derechos reservados.</p>
         </div>
     </footer>
-
 
     <script src="script.js"></script>
 </body>
