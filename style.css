@@ -1356,3 +1356,329 @@ footer {
         margin: 0 auto 15px;
     }
 }
+
+
+/* Reservas Section */
+.reservas {
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-lighter) 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.reservas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('imagenes/Ubicacion/Ubi1.jpeg') center/cover no-repeat;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.reservas-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+}
+
+/* Información de Reservas */
+.reservas-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.info-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gold);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.info-content h3 {
+    color: var(--color-light);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.schedule-item span:first-child {
+    color: var(--color-gray);
+}
+
+.schedule-item span:last-child {
+    color: var(--color-gold);
+    font-weight: 600;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-gold);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: var(--transition);
+}
+
+.contact-link:hover {
+    color: var(--color-gold-light);
+    transform: translateX(5px);
+}
+
+.reserva-notes {
+    list-style: none;
+    color: var(--color-gray);
+}
+
+.reserva-notes li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.reserva-notes li::before {
+    content: '•';
+    color: var(--color-gold);
+    position: absolute;
+    left: 0;
+}
+
+/* Widget de Reservas */
+.reservas-widget {
+    background: rgba(15, 15, 15, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.widget-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.widget-header h3 {
+    color: var(--color-light);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.widget-header p {
+    color: var(--color-gray);
+}
+
+/* Botón TheFork Mejorado */
+.tf-widget-button-container {
+    margin-bottom: 30px;
+}
+
+.tf-widget-button {
+    display: block;
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    color: var(--color-dark);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.tf-widget-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 100%);
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.button-content i:first-child {
+    font-size: 1.8rem;
+    opacity: 0.9;
+}
+
+.button-content i:last-child {
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.button-text {
+    flex: 1;
+    text-align: center;
+}
+
+.button-main {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.button-sub {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+/* Opciones Alternativas */
+.alternative-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.alternative-option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.alternative-option:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateX(5px);
+}
+
+.alternative-option i {
+    width: 50px;
+    height: 50px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gold);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.alternative-option h4 {
+    color: var(--color-light);
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.alternative-option a {
+    color: var(--color-gold);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.alternative-option a:hover {
+    color: var(--color-gold-light);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .reservas-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .reservas-widget {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .reservas {
+        padding: 80px 0;
+    }
+    
+    .reservas-widget {
+        padding: 30px 25px;
+    }
+    
+    .button-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .button-content i:first-child {
+        font-size: 2rem;
+    }
+    
+    .button-content i:last-child {
+        display: none;
+    }
+    
+    .alternative-options {
+        gap: 15px;
+    }
+    
+    .alternative-option {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reservas-widget {
+        padding: 25px 20px;
+    }
+    
+    .info-card {
+        padding: 25px 20px;
+    }
+    
+    .widget-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .button-main {
+        font-size: 1.1rem;
+    }
+}

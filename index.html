@@ -27,18 +27,16 @@
                 <a href="#menu" class="nav-link">Carta</a>
                 <a href="#galeria" class="nav-link">Galería</a>
                 <a href="#ubicacion" class="nav-link">Ubicación & Horario</a>
+                <a href="#reservas" class="nav-link">Reservas</a>
                 <a href="#contacto" class="nav-link">Contacto</a>
                 <div class="nav-indicator"></div>
             </nav>
             
-        <!--
-            Botón Reserva (desactivado temporalmente)
-            <a href="#contacto" class="btn-reserva">
+            <a href="#reservas" class="btn-reserva">
                 <i class="fas fa-calendar-check"></i>
                 Reservar
             </a>
 
-        -->
             <!-- Hamburger Menu -->
             <button class="hamburger" id="hamburger">
                 <span></span>
@@ -55,9 +53,10 @@
                     <li><a href="#menu" class="nav-link">Carta</a></li>
                     <li><a href="#galeria" class="nav-link">Galería</a></li>
                     <li><a href="#ubicacion" class="nav-link">Ubicación y Horario</a></li>
+                    <li><a href="#reservas" class="nav-link">Reservas</a></li>
                     <li><a href="#contacto" class="nav-link">Contacto</a></li>
                 </ul>
-                <!--<a href="#contacto" class="btn-reserva-mobile">
+                <!--<a href="#reservas" class="btn-reserva-mobile">
                     <i class="fas fa-calendar-check"></i>
                     Hacer Reserva
                 </a>-->
@@ -526,6 +525,112 @@
                     <div class="map-container">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d459.95818552017903!2d1.1074298219394394!3d41.150970335546845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a157199152da39%3A0xa8e97f8ea4940a07!2sRestaurant%20nor!5e1!3m2!1ses!2ses!4v1752053044251!5m2!1ses!2ses" 
                                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservas -->
+    <section id="reservas" class="reservas">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">
+                    <span>Reservas</span>
+                </div>
+                <h2 class="section-title">Vive la Experiencia NOR</h2>
+                <p class="section-description">Asegura tu mesa para una velada inolvidable en el corazón de Reus</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="reservas-container">
+                <!-- Información de reservas -->
+                <div class="reservas-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Horario de Reservas</h3>
+                            <div class="schedule">
+                                <div class="schedule-item">
+                                    <span>Lunes - Jueves</span>
+                                    <span>13:00 - 23:00</span>
+                                </div>
+                                <div class="schedule-item">
+                                    <span>Viernes - Domingo y Festivos</span>
+                                    <span>13:00 - 23:30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Grupos y Eventos</h3>
+                            <p>¿Planeas una celebración especial? Contamos con espacios para grupos hasta 25 personas.</p>
+                            <a href="tel:+34614252659" class="contact-link">
+                                <i class="fas fa-phone"></i>
+                                Contactar para eventos
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Información Importante</h3>
+                            <ul class="reserva-notes">
+                                <li>Reservas confirmadas con 15 min de tolerancia</li>
+                                <li>Menú especial disponible bajo petición</li>
+                                <li>Accesibilidad completa garantizada</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Widget de reservas mejorado -->
+                <div class="reservas-widget">
+                    <div class="widget-header">
+                        <h3>Reserva Instantánea</h3>
+                        <p>Garantiza tu mesa en segundos</p>
+                    </div>
+                    
+                    <div class="tf-widget-button-container">
+                        <a class="tf-widget-button" href="https://widget.thefork.com/93428326-8559-497c-b21c-ce1f86625fb8" 
+                        target="_blank" rel="noopener">
+                            <div class="button-content">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div class="button-text">
+                                    <span class="button-main">Reservar Mesa</span>
+                                    <span class="button-sub">TheFork - Confirmación Inmediata</span>
+                                </div>
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="alternative-options">
+                        <div class="alternative-option">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>Reserva por WhatsApp</h4>
+                                <a href="https://wa.me/34614252659" target="_blank">+34 614 25 26 59</a>
+                            </div>
+                        </div>
+                        
+                        <div class="alternative-option">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Llámanos Directamente</h4>
+                                <a href="tel:+34614252659">+34 614 25 26 59</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
