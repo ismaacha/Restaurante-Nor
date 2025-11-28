@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta | NOR Restaurante</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../imagenes/Favicon.png">
+    <meta name="description" content="Carta de NOR - Restaurante Gourmet Mediterráneo. Filtra, busca y consulta detalles de nuestros platos.">
+    <style>
+        /* Pequeños ajustes exclusivos para la vista de carta */
+        .page-header { padding: 30px 0; text-align:center; }
+        .controls { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:30px; }
+        .controls .search { padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); background:transparent; color:var(--color-light); }
+        .controls .select { padding:10px 14px; border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,0.08); color:var(--color-light); }
+        .favorite-toggle { background:transparent; border: none; color:var(--color-gold); font-size:1.2rem; cursor:pointer }
+        .menu-grid { margin-top:10px; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:24px }
+        .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.6); display:none; align-items:center; justify-content:center; z-index:2000 }
+        .modal { background:var(--color-dark); max-width:900px; width:95%; border-radius:12px; box-shadow:var(--shadow); overflow:hidden }
+        .modal-inner { display:flex; gap:20px; padding:20px }
+        .modal-inner img { width:320px; height:220px; object-fit:cover; border-radius:8px }
+        .modal-body { flex:1 }
+        @media (max-width:768px) { .modal-inner { flex-direction:column } .modal-inner img{ width:100%; height:200px } }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container nav-container">
+            <a href="../index.html#inicio" class="logo">
+                <span>NOR</span>
+            </a>
+            
+            <!-- Navegación Desktop -->
+            <nav class="nav-desktop">
+                <a href="../index.html#inicio" class="nav-link">Inicio</a>
+                <a href="../index.html#nosotros" class="nav-link">Nosotros</a>
+                <a href="./carta.html" class="nav-link">Carta</a>
+                <a href="../index.html#galeria" class="nav-link">Galería</a>
+                <a href="../index.html#ubicacion" class="nav-link">Ubicación & Horario</a>
+                <a href="../index.html#reservas" class="nav-link">Reservas</a>
+                <a href="../index.html#contacto" class="nav-link">Contacto</a>
+                <div class="nav-indicator"></div>
+            </nav>
+            
+            <a href="../index.html#reservas" class="btn-reserva">
+                <i class="fas fa-calendar-check"></i>
+                Reservar
+            </a>
+
+            <!-- Hamburger Menu -->
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Navegación Mobile -->
+        <nav class="nav-mobile" id="navMobile">
+            <div class="nav-mobile-content">
+                <ul class="nav-mobile-links">
+                    <li><a href="../index.html#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="../index.html#nosotros" class="nav-link">Nosotros</a></li>
+                    <li><a href="./carta.html" class="nav-link">Carta</a></li>
+                    <li><a href="../index.html#galeria" class="nav-link">Galería</a></li>
+                    <li><a href="../index.html#ubicacion" class="nav-link">Ubicación y Horario</a></li>
+                    <li><a href="../index.html#reservas" class="nav-link">Reservas</a></li>
+                    <li><a href="../index.html#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Small page header (under fixed nav) -->
+    <div class="container page-header" style="margin-top: calc(var(--header-height)); padding-top:16px;">
+        <h1 class="section-title" style="margin:0; font-size:2.2rem">Nuestra Carta</h1>
+        <p class="section-description" style="margin-top:8px;">Filtra, busca y descubre nuestros platos destacados. Pulsa en una tarjeta para ver detalles.</p>
+    </div>
+    <style>main{padding-top:18px}</style>
+
+    <main class="container">
+        <div class="controls">
+            <div>
+                <label style="margin-right:8px; font-weight:500; color:var(--color-light)">Categoría:</label>
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="mediterraneo">Mediterráneo</button>
+                <button class="filter-btn" data-filter="pescados">Pescados</button>
+                <button class="filter-btn" data-filter="Fast Food">Fast Food</button>
+                <button class="filter-btn" data-filter="postres">Postres</button>
+            </div>
+
+            <input id="searchInput" class="search" type="search" placeholder="Buscar plato o ingrediente..." />
+
+            <select id="sortSelect" class="select">
+                <option value="default">Orden: recomendado</option>
+                <option value="price-asc">Precio: menor a mayor</option>
+                <option value="price-desc">Precio: mayor a menor</option>
+            </select>
+            <br>
+            <button id="downloadBtn" class="btn btn-secondary">Descargar Carta</button>
+            <span id="downloadStatus" style="margin-left:12px;color:var(--color-gray);font-size:0.95rem"></span>
+        </div>
+
+        <div id="menuGrid" class="menu-grid"></div>
+    </main>
+
+    <!-- Modal detalle -->
+    <div id="modalBackdrop" class="modal-backdrop">
+        <div class="modal">
+            <div class="modal-inner">
+                <img id="modalImg" src="" alt="">
+                <div class="modal-body">
+                    <h3 id="modalTitle" style="margin-top:0"></h3>
+                    <p id="modalCategory" style="color:var(--color-gold)"></p>
+                    <p id="modalPrice" style="font-weight:700; font-size:1.2rem"></p>
+                    <p id="modalDesc" style="color:var(--color-gray);"></p>
+                    <div style="margin-top:12px; display:flex; gap:8px; align-items:center">
+                        <button id="favModalBtn" class="btn btn-primary">Favorito <i class="fas fa-heart" style="margin-left:8px"></i></button>
+                        <button id="closeModal" class="btn btn-secondary">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span>NOR</span>
+                    </div>
+                    <p class="footer-description">Una experiencia gastronómica donde la tradición mediterránea se encuentra con la autenticidad de los mejores tacos.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/nor_restaurant21?igsh=M3R1cHZ0aDMyemo0" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://vm.tiktok.com/ZNdnCpXDD/" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/34614252659" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Av. de Jaume I, 21, 43205 Reus</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+34 614 25 26 59</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>restanor21@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Horario</h3>
+                    <div class="footer-hours">
+                        <div class="hours-item">
+                            <span>Lunes - Domingo</span>
+                            <span>13:00 - 23:30</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Festivos</span>
+                            <span>13:00 - 23:30</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir novedades y ofertas especiales</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu correo electrónico" required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Restaurante NOR. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuData = [
+            { id:1, title: 'Lubina a la Sal', category:'pescados', price:22.5, image:'../imagenes/Platos/Plato2.png', desc:'Lubina salvaje en costra de sal, hierbas provenzales y verduras asadas', badge:'Especialidad' },
+            { id:2, title: 'Selección Mediterránea', category:'mediterraneo', price:18.0, image:'../imagenes/Platos/Plato3.png', desc:'Tapas mediterráneas: pulpo, burrata y pan con tomate', badge:'Variado' },
+            { id:3, title: 'Pescado del Día', category:'pescados', price:19.5, image:'../imagenes/Pescados/Pescado1.png', desc:'Filete de pescado con salsa casera y cilantro', badge:'Variado' },
+            { id:4, title: 'Tacos Gourmet', category:'Fast Food', price:14.0, image:'../imagenes/Platos/Plato4.jpeg', desc:'Tortillas de maíz con pollo, carne y salsas artesanas', badge:'TOP' },
+            { id:5, title: 'Hamburguesa NOR', category:'Fast Food', price:13.5, image:'../imagenes/Platos/Plato4.jpeg', desc:'Carne 200g, cheddar, cebolla caramelizada y patatas', badge:'TOP' },
+            { id:6, title: 'Bocadillo Artesano', category:'Fast Food', price:9.5, image:'../imagenes/Platos/Plato4.jpeg', desc:'Bocadillo con ingredientes locales y pan casero', badge:'Variado' },
+            { id:7, title: 'Tarta de Queso', category:'postres', price:7.0, image:'../imagenes/Postres/Postre1.jpeg', desc:'Tarta cremosa con coulis de frambuesa', badge:'' },
+            { id:8, title: 'Batidos de frutas', category:'postres', price:3, image:'../imagenes/Postres/Postre3.png', desc:'Batidos naturales de frutas frescas', badge:'' },
+            { id:9, title: 'Mousse de Chocolate', category:'postres', price:6.0, image:'../imagenes/Postres/Postre3.jpeg', desc:'Mousse ligera con virutas de chocolate', badge:'' },
+            { id:10, title: 'Ensalada Mediterránea', category:'mediterraneo', price:12.0, image:'../imagenes/Platos/Plato3.png', desc:'Tomate, pepino, aceitunas, queso feta y vinagreta', badge:'' },
+            { id:11, title: 'Paella de Mariscos', category:'mediterraneo', price:20.0, image:'../imagenes/Platos/Plato2.png', desc:'Arroz con mariscos frescos y azafrán', badge:'Especialidad' },
+            { id:12, title: 'Calamares a la Romana', category:'pescados', price:11.5, image:'../imagenes/Pescados/Pescado1.png', desc:'Calamares fritos con alioli casero', badge:'' },
+        ];
+
+        const menuGrid = document.getElementById('menuGrid');
+        const searchInput = document.getElementById('searchInput');
+        const sortSelect = document.getElementById('sortSelect');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalPrice = document.getElementById('modalPrice');
+        const favModalBtn = document.getElementById('favModalBtn');
+
+        function renderGrid(data){
+            menuGrid.innerHTML = '';
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.dataset.category = item.category;
+                card.innerHTML = `
+                    <div class="menu-card-image">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        ${item.badge? `<div class="card-badge">${item.badge}</div>`: ''}
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h4 class="menu-card-title">${item.title}</h4>
+                            <span class="menu-card-price">€${item.price.toFixed(2)}</span>
+                        </div>
+                        <p class="menu-card-description">${item.desc}</p>
+                        <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
+                            <button class="btn btn-secondary" data-id="${item.id}">Ver</button>
+                            <button class="favorite-toggle" data-fav="${item.id}" title="Favorito"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                    </div>
+                `;
+                menuGrid.appendChild(card);
+            });
+            attachCardEvents();
+            refreshFavoritesUI();
+        }
+
+        function attachCardEvents(){
+            document.querySelectorAll('.menu-card .btn').forEach(btn=>{
+                btn.onclick = (e)=>{
+                    const id = Number(e.currentTarget.dataset.id);
+                    openModal(menuData.find(x=>x.id===id));
+                }
+            });
+            document.querySelectorAll('.favorite-toggle').forEach(bt=>{
+                bt.onclick = (e)=>{
+                    const id = e.currentTarget.dataset.fav;
+                    toggleFavorite(id);
+                    e.stopPropagation();
+                }
+            });
+        }
+
+        // Filtrado y búsqueda
+        document.querySelectorAll('.filter-btn').forEach(b=>{
+            b.addEventListener('click', ()=>{
+                document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
+                b.classList.add('active');
+                applyFilters();
+            })
+        });
+
+        searchInput.addEventListener('input', ()=> applyFilters());
+        sortSelect.addEventListener('change', ()=> applyFilters());
+        document.getElementById('downloadBtn').addEventListener('click', ()=> downloadCartaZip());
+
+        // Descargar las 4 imágenes directamente (sin ZIP)
+        async function downloadCartaZip(){
+            const status = document.getElementById('downloadStatus');
+            const images = ['c1.jpg','c2.jpg','c3.jpg','c4.jpg'];
+            let downloaded = 0;
+            status.textContent = 'Iniciando descargas...';
+            for(const name of images){
+                const url = `../imagenes/Carta/${name}`;
+                status.textContent = `Descargando ${name}...`;
+                try{
+                    const res = await fetch(url);
+                    if(!res.ok) throw new Error(`${name} no encontrado (HTTP ${res.status})`);
+                    const blob = await res.blob();
+                    if(typeof saveAs === 'function'){
+                        saveAs(blob, name);
+                        downloaded++;
+                    } else {
+                        // Fallback: abrir en nueva pestaña para que el usuario guarde manualmente
+                        const objectUrl = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = objectUrl;
+                        a.download = name;
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        URL.revokeObjectURL(objectUrl);
+                        downloaded++;
+                    }
+                    // Pequeña pausa para evitar bloqueos por descargas múltiples en algunos navegadores
+                    await new Promise(r => setTimeout(r, 300));
+                } catch(err){
+                    console.error('Error al descargar', name, err);
+                    status.textContent = `Error con ${name}`;
+                    await new Promise(r => setTimeout(r, 1200));
+                }
+            }
+            status.textContent = `Descargadas ${downloaded}/${images.length}`;
+            setTimeout(()=> status.textContent = '', 3500);
+        }
+
+        function applyFilters(){
+            const active = document.querySelector('.filter-btn.active').dataset.filter;
+            const q = searchInput.value.trim().toLowerCase();
+            let results = menuData.filter(item => {
+                const matchesCategory = active === 'all' ? true : item.category === active;
+                const matchesQuery = q === '' ? true : (item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q));
+                return matchesCategory && matchesQuery;
+            });
+            // ordenar
+            const sort = sortSelect.value;
+            if(sort==='price-asc') results.sort((a,b)=>a.price-b.price);
+            if(sort==='price-desc') results.sort((a,b)=>b.price-a.price);
+            renderGrid(results);
+        }
+
+        // Modal
+        function openModal(item){
+            modalImg.src = item.image;
+            modalTitle.textContent = item.title;
+            modalDesc.textContent = item.desc;
+            modalCategory.textContent = item.category.toUpperCase();
+            modalPrice.textContent = `€${item.price.toFixed(2)}`;
+            favModalBtn.dataset.id = item.id;
+            modalBackdrop.style.display = 'flex';
+        }
+        document.getElementById('closeModal').addEventListener('click', ()=> modalBackdrop.style.display='none');
+        modalBackdrop.addEventListener('click', (e)=>{ if(e.target===modalBackdrop) modalBackdrop.style.display='none' });
+
+        // Favoritos en localStorage
+        function getFavorites(){
+            try { return JSON.parse(localStorage.getItem('nor_favs')||'[]'); } catch { return [] }
+        }
+        function saveFavorites(a){ localStorage.setItem('nor_favs', JSON.stringify(a)); }
+        function toggleFavorite(id){
+            const favs = getFavorites();
+            const sid = String(id);
+            const idx = favs.indexOf(sid);
+            if(idx>=0) favs.splice(idx,1); else favs.push(sid);
+            saveFavorites(favs);
+            refreshFavoritesUI();
+        }
+        function refreshFavoritesUI(){
+            const favs = getFavorites();
+            document.querySelectorAll('.favorite-toggle').forEach(bt=>{
+                const id = bt.dataset.fav;
+                const icon = bt.querySelector('i');
+                if(favs.includes(String(id))) { icon.className='fa-solid fa-heart'; bt.title='Quitar favorito' }
+                else { icon.className='fa-regular fa-heart'; bt.title='Añadir a favoritos' }
+            });
+        }
+        favModalBtn.addEventListener('click', ()=>{ toggleFavorite(favModalBtn.dataset.id); favModalBtn.textContent = 'Favorito ✓' });
+
+        // Inicial
+        renderGrid(menuData);
+    </script>
+
+    <!-- Librería para descarga directa (FileSaver) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <script src="../script.js"></script>
+</body>
+</html>
