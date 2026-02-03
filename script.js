@@ -8,6 +8,7 @@ function initializeApp() {
     initNavigation();
     initMenuFiltering();
     initGalleryHover();
+    initMenuCtaLightbox();
     initHeaderScroll();
     initSmoothScrolling();
 }
@@ -175,6 +176,81 @@ function initGalleryHover() {
         item.addEventListener('mouseleave', function() {
             this.style.transform = 'scale(1)';
         });
+    });
+}
+
+// ===== LIGHTBOX PARA CARTA =====
+function initMenuCtaLightbox() {
+    const cards = Array.from(document.querySelectorAll('.menu-cta-card'));
+    const lightbox = document.getElementById('menuLightbox');
+
+    if (!cards.length || !lightbox) return;
+
+    const image = lightbox.querySelector('.lightbox-image');
+    const caption = lightbox.querySelector('.lightbox-caption');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    const prevBtn = lightbox.querySelector('.lightbox-prev');
+    const nextBtn = lightbox.querySelector('.lightbox-next');
+    const backdrop = lightbox.querySelector('[data-lightbox-close]');
+    let currentIndex = 0;
+
+    function updateLightbox(index) {
+        const card = cards[index];
+        const fullSrc = card.getAttribute('data-full');
+        const text = card.getAttribute('data-caption') || '';
+        image.src = fullSrc;
+        image.alt = text || 'Carta del restaurante';
+        caption.textContent = text;
+    }
+
+    function openLightbox(index) {
+        currentIndex = index;
+        updateLightbox(currentIndex);
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateLightbox(currentIndex);
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateLightbox(currentIndex);
+    }
+
+    cards.forEach((card, index) => {
+        card.addEventListener('click', () => openLightbox(index));
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    backdrop.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+
+    document.addEventListener('keydown', (event) => {
+        if (!lightbox.classList.contains('active')) return;
+
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+
+        if (event.key === 'ArrowLeft') {
+            showPrev();
+        }
+
+        if (event.key === 'ArrowRight') {
+            showNext();
+        }
     });
 }
 
