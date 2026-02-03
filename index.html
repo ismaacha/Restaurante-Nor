@@ -373,10 +373,27 @@
             
             <div class="menu-cta">
                 <p>¿No encuentras lo que buscas? Consulta nuestra carta completa</p>
-                <a href="../vistas/carta.html" class="btn btn-primary">
-                    <span>Carta Completa</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
+                <p class="menu-cta-hint">Haz clic para ampliar cada página de la carta</p>
+                <div class="menu-cta-gallery" aria-label="Carta completa">
+                    <button class="menu-cta-card" data-full="imagenes/Carta/c2.jpeg" data-caption="Carta - Entrantes y principales" aria-label="Abrir carta: Entrantes y principales">
+                        <img src="imagenes/Carta/c2.jpeg" alt="Carta del restaurante: Variados y principales" loading="lazy">
+                        <span class="menu-cta-zoom" aria-hidden="true">
+                            <i class="fas fa-search-plus"></i>
+                        </span>
+                    </button>
+                    <button class="menu-cta-card" data-full="imagenes/Carta/c3.jpeg" data-caption="Carta - Platos especiales" aria-label="Abrir carta: Platos especiales">
+                        <img src="imagenes/Carta/c3.jpeg" alt="Carta del restaurante: Platos especiales" loading="lazy">
+                        <span class="menu-cta-zoom" aria-hidden="true">
+                            <i class="fas fa-search-plus"></i>
+                        </span>
+                    </button>
+                    <button class="menu-cta-card" data-full="imagenes/Carta/c4.jpeg" data-caption="Carta - Postres y bebidas" aria-label="Abrir carta: Postres y bebidas">
+                        <img src="imagenes/Carta/c4.jpeg" alt="Carta del restaurante: Platos y bebidas" loading="lazy">
+                        <span class="menu-cta-zoom" aria-hidden="true">
+                            <i class="fas fa-search-plus"></i>
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -715,6 +732,23 @@
             </div>
         </div>
     </footer>
+
+    <div class="lightbox" id="menuLightbox" aria-hidden="true">
+        <div class="lightbox-backdrop" data-lightbox-close></div>
+        <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Vista ampliada de la carta">
+            <button class="lightbox-close" type="button" aria-label="Cerrar vista ampliada">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" type="button" aria-label="Imagen anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img class="lightbox-image" src="" alt="">
+            <button class="lightbox-nav lightbox-next" type="button" aria-label="Imagen siguiente">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <p class="lightbox-caption"></p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
