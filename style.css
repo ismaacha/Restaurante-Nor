@@ -665,8 +665,14 @@ header.scrolled {
     margin-top: 40px;
 }
 
+/* La rayita va alineada con el título, no centrada */
+.about-content .divider {
+    margin-left: 0;
+}
+
 .feature {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
