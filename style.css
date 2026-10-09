@@ -640,7 +640,7 @@ header.scrolled {
 
 .about-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 80px;
     align-items: center;
 }
@@ -717,13 +717,46 @@ header.scrolled {
 }
 
 .about-stats {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
     margin-top: 30px;
 }
 
 .stat {
     text-align: center;
+}
+
+/* Reconocimientos (pegatinas Restaurant Guru) */
+.about-awards {
+    margin-top: 35px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    text-align: center;
+}
+
+.about-awards-label {
+    display: block;
+    color: var(--color-gold);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.about-awards-badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.about-awards-badges #b-gold,
+.about-awards-badges #b-circledLeaves27 {
+    flex-shrink: 0;
+    margin: 0;
 }
 
 .stat-number {
@@ -1421,7 +1454,7 @@ footer {
 @media (max-width: 1024px) {
     .about-container,
     .location-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 50px;
     }
     
@@ -1465,7 +1498,24 @@ footer {
     .section-title {
         font-size: 2.8rem;
     }
-    
+
+    .about-image img {
+        height: 340px;
+    }
+
+    .about-stats {
+        gap: 10px;
+    }
+
+    .stat-number {
+        font-size: 2.1rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        line-height: 1.3;
+    }
+
     .menu-grid {
         grid-template-columns: 1fr;
     }
@@ -1519,6 +1569,16 @@ footer {
     
     .feature-icon {
         margin: 0 auto 15px;
+    }
+
+    .about-image img {
+        height: 280px;
+    }
+
+    /* Las dos pegatinas caben lado a lado en móviles estrechos */
+    .about-awards-badges {
+        gap: 12px;
+        zoom: 0.85;
     }
 }
 
@@ -1848,11 +1908,7 @@ footer {
     }
 }
 
-/* ===== FIX: Evitar scroll horizontal y mejorar móvil ===== */
-html, body {
-    overflow-x: hidden;
-}
-
+/* ===== FIX: mejorar móvil ===== */
 img, iframe {
     max-width: 100%;
     height: auto;
@@ -1926,9 +1982,6 @@ img, iframe {
     .filter-btn { padding: 8px 10px; font-size: 0.85rem; }
     .section-title { font-size: 1.8rem; }
 }
-
-/* Small guard to ensure no element accidentally overflows */
-* { max-width: 100vw; }
 
 /* ===== UI tweaks requested ===== */
 /* Active filter button: white text */
