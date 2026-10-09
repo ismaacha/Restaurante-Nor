@@ -7,7 +7,6 @@ function initializeApp() {
     initScrollAnimations();
     initNavigation();
     initMenuFiltering();
-    initGalleryHover();
     initMenuCtaLightbox();
     initHeaderScroll();
     initSmoothScrolling();
@@ -45,31 +44,29 @@ function initNavigation() {
 
     if (!hamburger || !navMobile) return;
 
+    function setMenuOpen(open) {
+        hamburger.classList.toggle('active', open);
+        navMobile.classList.toggle('active', open);
+        hamburger.setAttribute('aria-expanded', open);
+        hamburger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+
     // Toggle menú móvil
     hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navMobile.classList.toggle('active');
-        document.body.style.overflow = navMobile.classList.contains('active') ? 'hidden' : '';
+        setMenuOpen(!navMobile.classList.contains('active'));
     });
 
     // Cerrar menú al hacer click en enlace
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (navMobile.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMobile.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+            if (navMobile.classList.contains('active')) setMenuOpen(false);
         });
     });
 
     // Cerrar menú con ESC
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navMobile.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navMobile.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        if (e.key === 'Escape' && navMobile.classList.contains('active')) setMenuOpen(false);
     });
 
     // Indicador de navegación para desktop
@@ -160,21 +157,6 @@ function initMenuFiltering() {
                     setTimeout(() => card.style.display = 'none', 300);
                 }
             });
-        });
-    });
-}
-
-// ===== EFECTOS DE GALERÍA =====
-function initGalleryHover() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    galleryItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.02)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
         });
     });
 }
@@ -274,9 +256,15 @@ function initHeaderScroll() {
 function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            // Enlaces vacíos ("#") no apuntan a ninguna sección
+            if (href.length < 2) {
+                e.preventDefault();
+                return;
+            }
+            const target = document.getElementById(href.slice(1));
             if (target) {
+                e.preventDefault();
                 const headerHeight = document.getElementById('header').offsetHeight;
                 const targetPosition = target.offsetTop - headerHeight;
                 
@@ -316,28 +304,6 @@ function initHeroAnimation() {
         }, 300);
     }
 }
-// Optimizaciones específicas para dispositivos móviles
-function optimizeHeroForMobile() {
-    const heroBackground = document.querySelector('.hero-background');
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile && heroBackground) {
-        // Desactivar animaciones complejas en móvil
-        heroBackground.style.animation = 'none';
-        
-        // Cargar una versión optimizada de la imagen si es necesario
-        const currentBg = window.getComputedStyle(heroBackground).backgroundImage;
-        if (currentBg.includes('Ubi3.jpeg')) {
-            // Aquí podrías cambiar a una imagen optimizada para móvil
-            // heroBackground.style.backgroundImage = 'url("imagenes/Ubicacion/Ubi3-mobile.jpg")';
-        }
-    }
-}
-
-// Ejecutar al cargar y al redimensionar
-window.addEventListener('load', optimizeHeroForMobile);
-window.addEventListener('resize', optimizeHeroForMobile);
-
 // Intersection Observer para pausar animaciones cuando no son visibles
 function initHeroPerformance() {
     const hero = document.querySelector('.hero');
